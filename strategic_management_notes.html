@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Management — Units I & II</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1612;
+    --paper: #f5f0e8;
+    --cream: #ede7d9;
+    --accent: #c0392b;
+    --gold: #b8860b;
+    --muted: #7a6f62;
+    --light-rule: #d8d0c4;
+    --purple: #4a3f6b;
+    --teal: #1a5c52;
+    --amber: #8a5e00;
+    --coral: #9e3a2a;
+    --blue: #1e4070;
+    --green: #2d5a27;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  /* Subtle paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ---- SIDEBAR NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 220px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 40px 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .nav-brand {
+    padding: 0 24px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 24px;
+  }
+
+  .nav-brand .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+
+  .nav-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+  }
+
+  .nav-section {
+    padding: 0 24px 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 8px;
+  }
+
+  nav a {
+    display: block;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  nav a:hover {
+    color: #fff;
+    border-left-color: var(--accent);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* ---- MAIN CONTENT ---- */
+  main {
+    margin-left: 220px;
+    padding: 64px 72px 120px;
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- PAGE HEADER ---- */
+  .page-header {
+    margin-bottom: 72px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-rule);
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .course-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .page-header h1 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .header-meta span::before {
+    content: '— ';
+  }
+
+  /* ---- UNIT HEADERS ---- */
+  .unit-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin: 80px 0 40px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .unit-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--cream);
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .unit-titles h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .unit-titles .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .unit-rule {
+    height: 2px;
+    background: linear-gradient(90deg, var(--ink) 0%, transparent 100%);
+    margin-bottom: 40px;
+  }
+
+  /* ---- SECTION HEADERS ---- */
+  .section {
+    margin-bottom: 56px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--light-rule);
+  }
+
+  .section p {
+    color: #3a342d;
+    margin-bottom: 14px;
+    font-size: 15.5px;
+  }
+
+  /* ---- CALLOUT / DEFINITION ---- */
+  .callout {
+    background: var(--cream);
+    border-left: 3px solid var(--accent);
+    padding: 18px 24px;
+    margin: 24px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout p {
+    margin: 0;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .callout strong {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ---- CONCEPT GRID ---- */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .concept-card {
+    background: var(--cream);
+    border: 1px solid var(--light-rule);
+    padding: 20px 22px;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .concept-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+
+  .concept-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .concept-card p {
+    font-size: 14px;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ---- TIMELINE ---- */
+  .timeline {
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 70px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--light-rule);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .timeline-era {
+    width: 70px;
+    flex-shrink: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 6px;
+    position: relative;
+    left: -4px;
+  }
+
+  .timeline-content h4 {
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+
+  .timeline-content p {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ---- FRAMEWORK DIAGRAM (SVG-based) ---- */
+  .diagram-wrap {
+    background: var(--cream);
+    border: 1px solid var(--light-rule);
+    border-radius: 6px;
+    padding: 28px;
+    margin: 24px 0;
+    overflow-x: auto;
+  }
+
+  .diagram-wrap svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ---- FIVE FORCES TABLE ---- */
+  .forces-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14.5px;
+  }
+
+  .forces-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--ink);
+    background: transparent;
+  }
+
+  .forces-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--light-rule);
+    vertical-align: top;
+    color: #3a342d;
+  }
+
+  .forces-table tr:hover td {
+    background: var(--cream);
+  }
+
+  .forces-table td:first-child {
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  /* ---- VRIO TABLE ---- */
+  .vrio-row {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 1fr;
+    gap: 0;
+    margin: 24px 0;
+    border: 1px solid var(--light-rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .vrio-row > div {
+    padding: 18px 16px;
+    border-right: 1px solid var(--light-rule);
+    border-bottom: 1px solid var(--light-rule);
+  }
+
+  .vrio-row > div:last-child { border-right: none; }
+
+  .vrio-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vrio-header {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .vrio-header > div {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+  }
+
+  .vrio-v .vrio-letter { color: var(--purple); }
+  .vrio-r .vrio-letter { color: var(--teal); }
+  .vrio-i .vrio-letter { color: var(--amber); }
+  .vrio-o .vrio-letter { color: var(--coral); }
+
+  .vrio-body h4 {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .vrio-body p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .vrio-outcome {
+    font-size: 13px;
+  }
+
+  .outcome-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 11.5px;
+    font-weight: 500;
+  }
+
+  .chip-parity { background: #e8e3da; color: var(--muted); }
+  .chip-temp   { background: #dce8e6; color: var(--teal); }
+  .chip-unused { background: #e8e4d4; color: var(--amber); }
+  .chip-sustained { background: #2d5a27; color: #e4f0e2; }
+
+  /* ---- DYNAMIC CAPS PANEL ---- */
+  .dyn-caps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .dyn-cap-card {
+    border: 1px solid var(--light-rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .dyn-cap-header {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid var(--light-rule);
+  }
+
+  .dyn-cap-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .dyn-cap-header h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .cap-sensing h4 { color: var(--purple); }
+  .cap-seizing h4 { color: var(--teal); }
+  .cap-transforming h4 { color: var(--amber); }
+
+  .dyn-cap-body {
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #3a342d;
+    background: var(--cream);
+    line-height: 1.6;
+  }
+
+  /* ---- CONNECTING SECTION ---- */
+  .connect-banner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 36px 40px;
+    border-radius: 6px;
+    margin: 40px 0;
+  }
+
+  .connect-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+    border: none;
+    padding: 0;
+  }
+
+  .connect-banner p {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 0;
+  }
+
+  .connect-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .connect-flow-item {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.9);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .connect-flow-arrow {
+    color: var(--accent);
+    font-size: 16px;
+  }
+
+  /* ---- PESTLE GRID ---- */
+  .pestle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .pestle-card {
+    border: 1px solid var(--light-rule);
+    border-radius: 4px;
+    padding: 18px 18px 14px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .pestle-card:hover { transform: translateY(-2px); }
+
+  .pestle-card::before {
+    content: attr(data-letter);
+    position: absolute;
+    top: -8px; right: 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    opacity: 0.06;
+    color: var(--ink);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pestle-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .pestle-card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .pestle-p h4 { color: var(--purple); }
+  .pestle-e1 h4 { color: var(--teal); }
+  .pestle-s h4 { color: var(--amber); }
+  .pestle-t h4 { color: var(--coral); }
+  .pestle-l h4 { color: var(--blue); }
+  .pestle-e2 h4 { color: var(--green); }
+
+  /* ---- 5P MINTZBERG ---- */
+  .five-p {
+    display: flex;
+    gap: 8px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+
+  .p-card {
+    flex: 1;
+    min-width: 100px;
+    border: 1px solid var(--light-rule);
+    border-radius: 4px;
+    padding: 14px 14px 12px;
+    text-align: center;
+  }
+
+  .p-card .p-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .p-card h4 {
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .p-card p {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* ---- PROCESS FLOW ---- */
+  .process-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 24px 0;
+    border: 1px solid var(--light-rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .process-step {
+    flex: 1;
+    padding: 18px 16px;
+    border-right: 1px solid var(--light-rule);
+    position: relative;
+  }
+
+  .process-step:last-child { border-right: none; }
+
+  .process-step h4 {
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .process-step p {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+
+  .ps-1 { background: var(--purple); color: #fff; }
+  .ps-2 { background: var(--teal); color: #fff; }
+  .ps-3 { background: var(--amber); color: #fff; }
+  .ps-4 { background: var(--coral); color: #fff; }
+
+  .ps-1 h4, .ps-2 h4, .ps-3 h4, .ps-4 h4 { color: #fff; }
+  .ps-1 p, .ps-2 p, .ps-3 p, .ps-4 p { color: rgba(255,255,255,0.75); }
+
+  /* ---- VMI PYRAMID ---- */
+  .vmi-stack {
+    margin: 24px 0;
+  }
+
+  .vmi-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 8px;
+    align-items: stretch;
+  }
+
+  .vmi-tag {
+    width: 140px;
+    flex-shrink: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 18px;
+    color: var(--muted);
+  }
+
+  .vmi-block {
+    flex: 1;
+    padding: 16px 20px;
+    border-radius: 4px;
+  }
+
+  .vmi-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .vmi-block p {
+    font-size: 13.5px;
+    margin: 0;
+  }
+
+  .vmi-vision { background: var(--purple); color: #fff; }
+  .vmi-vision h4 { color: #ddd8f0; }
+  .vmi-vision p { color: rgba(255,255,255,0.75); }
+  .vmi-mission { background: var(--cream); border: 1px solid var(--light-rule); }
+  .vmi-mission h4 { color: var(--ink); }
+  .vmi-mission p { color: var(--muted); }
+  .vmi-intent { background: var(--ink); color: #fff; }
+  .vmi-intent h4 { color: var(--accent); }
+  .vmi-intent p { color: rgba(255,255,255,0.75); }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section { animation: fadeUp 0.5s ease both; }
+  .section:nth-child(2) { animation-delay: 0.05s; }
+  .section:nth-child(3) { animation-delay: 0.10s; }
+  .section:nth-child(4) { animation-delay: 0.15s; }
+  .section:nth-child(5) { animation-delay: 0.20s; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    nav { width: 180px; }
+    main { margin-left: 180px; padding: 48px 36px 80px; }
+    .concept-grid { grid-template-columns: 1fr; }
+    .dyn-caps { grid-template-columns: 1fr; }
+    .pestle-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    nav { position: static; width: 100%; height: auto; }
+    main { margin-left: 0; padding: 32px 24px; }
+    .process-flow { flex-direction: column; }
+    .pestle-grid { grid-template-columns: 1fr; }
+    .five-p { flex-direction: column; }
+    .vmi-tag { width: 80px; font-size: 9px; }
+    .vrio-row { grid-template-columns: 30px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="label">Study Notes</div>
+    <h2>Strategic Management</h2>
+  </div>
+
+  <div class="nav-section">Unit I</div>
+  <a href="#evolution">Evolution of Strategy</a>
+  <a href="#definition">Defining Strategy</a>
+  <a href="#process">Strategic Process</a>
+  <a href="#vmi">Vision, Mission & Intent</a>
+
+  <div class="nav-section">Unit II</div>
+  <a href="#pestle">PESTLE Framework</a>
+  <a href="#porter">Porter's Five Forces</a>
+  <a href="#rbv">RBV & VRIO</a>
+  <a href="#teece">Dynamic Capabilities</a>
+  <a href="#connect">Connecting Frameworks</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="course-tag">MBA · Strategic Management</div>
+    <h1>Strategic Intent<br>& <em>Environmental</em> Analysis</h1>
+    <div class="header-meta">
+      <span>Unit I — Strategic Intent and Process</span>
+      <span>Unit II — Environmental Analysis</span>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  UNIT I                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <div class="unit-header">
+    <div class="unit-num">I</div>
+    <div class="unit-titles">
+      <h2>Strategic Intent and Process</h2>
+      <div class="subtitle">Evolution · Definition · Process · Vision · Mission · Strategic Intent</div>
+    </div>
+  </div>
+  <div class="unit-rule"></div>
+
+  <!-- EVOLUTION -->
+  <div class="section" id="evolution">
+    <h3>Evolution and Concept of Strategy</h3>
+    <p>Strategy migrated from military thinking — the Greek <em>strategos</em>, the art of the general — into business in the mid-20th century. Early business strategy was largely long-range financial planning; it evolved through several distinct phases as the competitive environment grew more complex.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-era">1950–60s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Budgeting & Financial Control</h4>
+          <p>Annual budgets, variance analysis, cost control. Strategy as a finance exercise.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-era">1960–70s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Corporate Planning</h4>
+          <p>Long-range planning, portfolio matrices (BCG). Projecting trends; diversification focus.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-era">1980s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Competitive Strategy</h4>
+          <p>Porter's five forces and generic strategies. Industry structure as the primary determinant of performance.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-era">1990–2000s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Resource-Based View</h4>
+          <p>Barney, Wernerfelt — internal resources and capabilities as the source of sustained advantage.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-era">2000s–now</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Dynamic Capabilities & Ecosystems</h4>
+          <p>Teece — ability to adapt and reconfigure in rapidly changing environments. Platform and network thinking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEFINITION -->
+  <div class="section" id="definition">
+    <h3>Defining Strategy — Mintzberg's 5 Ps</h3>
+    <p>Strategy resists a single definition. Henry Mintzberg's five perspectives capture the breadth of how the term is legitimately used:</p>
+
+    <div class="five-p">
+      <div class="p-card">
+        <div class="p-letter">P</div>
+        <h4>Plan</h4>
+        <p>Deliberate course of action decided in advance</p>
+      </div>
+      <div class="p-card">
+        <div class="p-letter">P</div>
+        <h4>Ploy</h4>
+        <p>Specific manoeuvre to outwit a competitor</p>
+      </div>
+      <div class="p-card">
+        <div class="p-letter">P</div>
+        <h4>Pattern</h4>
+        <p>Consistency in behavior over time, intended or not</p>
+      </div>
+      <div class="p-card">
+        <div class="p-letter">P</div>
+        <h4>Position</h4>
+        <p>Locating the firm within its environment</p>
+      </div>
+      <div class="p-card">
+        <div class="p-letter">P</div>
+        <h4>Perspective</h4>
+        <p>The firm's ingrained worldview and way of doing things</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Working Definition</strong>
+      <p>Strategy is the long-term direction of an organisation — making choices about where to compete, how to create value, and how to allocate resources to build sustainable competitive advantage.</p>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="section" id="process">
+    <h3>The Strategic Management Process</h3>
+    <p>The strategic management process is the full cycle by which strategy is formulated, implemented, and evaluated. It is iterative, not linear — evaluation feeds back into the next round of environmental analysis.</p>
+
+    <div class="process-flow">
+      <div class="process-step ps-1">
+        <div class="step-num">01</div>
+        <h4>Environmental Analysis</h4>
+        <p>External opportunities & threats; internal strengths & weaknesses</p>
+      </div>
+      <div class="process-step ps-2">
+        <div class="step-num">02</div>
+        <h4>Strategy Formulation</h4>
+        <p>Setting direction; choosing strategic options at corporate, business & functional levels</p>
+      </div>
+      <div class="process-step ps-3">
+        <div class="step-num">03</div>
+        <h4>Implementation</h4>
+        <p>Structure, systems, culture & resource allocation to translate strategy into action</p>
+      </div>
+      <div class="process-step ps-4">
+        <div class="step-num">04</div>
+        <h4>Evaluation & Control</h4>
+        <p>Measuring outcomes vs. objectives; feeding results back into the next cycle</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VMI -->
+  <div class="section" id="vmi">
+    <h3>Vision, Mission, and Strategic Intent</h3>
+    <p>These three concepts form the directional foundation of any strategy, operating at different levels of specificity and time horizon.</p>
+
+    <div class="vmi-stack">
+      <div class="vmi-row">
+        <div class="vmi-tag">Future-oriented</div>
+        <div class="vmi-block vmi-vision">
+          <h4>Vision</h4>
+          <p>The aspirational, long-term picture of what the organisation wants to become. Inspirational and relatively stable. <em>"To be the world's most loved, most trusted brand."</em></p>
+        </div>
+      </div>
+      <div class="vmi-row">
+        <div class="vmi-tag">Current purpose</div>
+        <div class="vmi-block vmi-mission">
+          <h4>Mission</h4>
+          <p>Defines what the organisation does, for whom, and why. More operational than vision, guiding day-to-day decisions. Specifies business scope, customer served, and value delivered.</p>
+        </div>
+      </div>
+      <div class="vmi-row">
+        <div class="vmi-tag">Competitive stretch</div>
+        <div class="vmi-block vmi-intent">
+          <h4>Strategic Intent</h4>
+          <p>Hamel & Prahalad (1989) — an ambitious competitive goal far beyond current capabilities, creating direction and energy. Explicitly competitive; demands creative tension. <em>Example: Komatsu's intent to "Encircle Caterpillar."</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Key Distinction</strong>
+      <p>Vision asks <em>"where do we want to go?"</em> Strategic intent asks <em>"what competitive position do we intend to seize, and what will it take to get there?"</em> Strategic intent bridges today's reality to a future competitive position.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  UNIT II                                     -->
+  <!-- ═══════════════════════════════════════════ -->
+
+  <div class="unit-header">
+    <div class="unit-num">II</div>
+    <div class="unit-titles">
+      <h2>Environmental Analysis</h2>
+      <div class="subtitle">PESTLE · Porter's Five Forces · RBV & VRIO · Dynamic Capabilities</div>
+    </div>
+  </div>
+  <div class="unit-rule"></div>
+
+  <!-- PESTLE -->
+  <div class="section" id="pestle">
+    <h3>PESTLE Framework</h3>
+    <p>PESTLE is a macro-environmental scanning tool that identifies external forces affecting an industry or organisation. It surfaces threats and opportunities but does not rank them — strategists must judge which factors are most significant for their specific context.</p>
+
+    <div class="pestle-grid">
+      <div class="pestle-card pestle-p" data-letter="P">
+        <h4>P — Political</h4>
+        <p>Government stability, tax policy, trade regulations, foreign policy, labour law</p>
+      </div>
+      <div class="pestle-card pestle-e1" data-letter="E">
+        <h4>E — Economic</h4>
+        <p>GDP growth, interest rates, inflation, exchange rates, unemployment levels</p>
+      </div>
+      <div class="pestle-card pestle-s" data-letter="S">
+        <h4>S — Social</h4>
+        <p>Demographic shifts, lifestyle changes, cultural attitudes, education, consumer values</p>
+      </div>
+      <div class="pestle-card pestle-t" data-letter="T">
+        <h4>T — Technological</h4>
+        <p>R&D activity, automation, digital infrastructure, rate of technological change</p>
+      </div>
+      <div class="pestle-card pestle-l" data-letter="L">
+        <h4>L — Legal</h4>
+        <p>Consumer protection, employment law, health & safety, data protection (GDPR)</p>
+      </div>
+      <div class="pestle-card pestle-e2" data-letter="E">
+        <h4>E — Environmental</h4>
+        <p>Carbon regulations, climate risk, resource scarcity, sustainability expectations</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTER -->
+  <div class="section" id="porter">
+    <h3>Porter's Five Forces</h3>
+    <p>Michael Porter (1979) argued that industry profitability is determined by five structural forces. This is an <em>industry-level</em> tool — it explains why some industries are structurally more attractive than others. The collective strength of these forces determines how much profit can be earned by a typical competitor.</p>
+
+    <table class="forces-table">
+      <thead>
+        <tr>
+          <th>Force</th>
+          <th>What it measures</th>
+          <th>High when…</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Competitive rivalry</td>
+          <td>Intensity among existing firms</td>
+          <td>Many balanced rivals, slow growth, high fixed costs, low differentiation, high exit barriers</td>
+        </tr>
+        <tr>
+          <td>Supplier power</td>
+          <td>Bargaining leverage of suppliers</td>
+          <td>Few suppliers, high switching costs, suppliers can integrate forward</td>
+        </tr>
+        <tr>
+          <td>Buyer power</td>
+          <td>Bargaining leverage of customers</td>
+          <td>Few buyers, large purchase volumes, undifferentiated products, substitutes available</td>
+        </tr>
+        <tr>
+          <td>Threat of new entrants</td>
+          <td>Ease of entry into the industry</td>
+          <td>Low economies of scale, low capital requirements, weak brand loyalty, no regulatory barriers</td>
+        </tr>
+        <tr>
+          <td>Threat of substitutes</td>
+          <td>Alternative products or services</td>
+          <td>Substitutes offer better price-performance, low switching costs for buyers</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Strategic Implication</strong>
+      <p>A strategy should position the firm to reduce the impact of these forces — or exploit weaknesses in competitors' positions relative to them. Porter's analysis is a starting point for identifying where to compete, not a complete strategy.</p>
+    </div>
+  </div>
+
+  <!-- RBV + VRIO -->
+  <div class="section" id="rbv">
+    <h3>Resource-Based View & VRIO Framework</h3>
+    <p>The RBV (Wernerfelt 1984; Barney 1991) shifts the unit of analysis <em>inside</em> the firm. Rather than asking "what industry should we be in?" it asks "what resources do we possess that can generate sustained competitive advantage?" Resources include physical assets, financial capital, human capital, brand equity, organisational culture, and intellectual property.</p>
+
+    <p>Barney's <strong>VRIO framework</strong> provides four tests a resource must pass to generate sustainable advantage:</p>
+
+    <!-- VRIO header -->
+    <div class="vrio-row vrio-header" style="background:var(--ink);color:var(--paper);border-radius:4px 4px 0 0;margin-bottom:0;border:1px solid var(--light-rule);">
+      <div style="padding:10px 12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Test</div>
+      <div style="padding:10px 12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Question</div>
+      <div style="padding:10px 12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);">If yes…</div>
+      <div style="padding:10px 12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Outcome</div>
+    </div>
+
+    <div style="border:1px solid var(--light-rule);border-top:none;border-radius:0 0 4px 4px;overflow:hidden;margin-bottom:24px;">
+      <!-- V -->
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;border-bottom:1px solid var(--light-rule);">
+        <div class="vrio-v" style="background:#ede8f5;padding:16px 10px;display:flex;align-items:center;justify-content:center;"><span class="vrio-letter" style="color:var(--purple);font-family:'Playfair Display',serif;font-size:22px;font-weight:900;">V</span></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);"><strong style="font-size:14px;">Valuable</strong><p style="font-size:13px;color:var(--muted);margin:4px 0 0;">Does it exploit an opportunity or neutralise a threat?</p></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);font-size:13px;color:var(--muted);">Resource adds value in the marketplace</div>
+        <div style="padding:14px 14px;font-size:13px;"><span class="outcome-chip chip-parity">Competitive parity</span></div>
+      </div>
+      <!-- R -->
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;border-bottom:1px solid var(--light-rule);">
+        <div style="background:#dce8e6;padding:16px 10px;display:flex;align-items:center;justify-content:center;"><span class="vrio-letter" style="color:var(--teal);font-family:'Playfair Display',serif;font-size:22px;font-weight:900;">R</span></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);"><strong style="font-size:14px;">Rare</strong><p style="font-size:13px;color:var(--muted);margin:4px 0 0;">Is it possessed by few or no rivals?</p></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);font-size:13px;color:var(--muted);">Resource is not widely available in the industry</div>
+        <div style="padding:14px 14px;font-size:13px;"><span class="outcome-chip chip-temp">Temporary advantage</span></div>
+      </div>
+      <!-- I -->
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;border-bottom:1px solid var(--light-rule);">
+        <div style="background:#e8e4d4;padding:16px 10px;display:flex;align-items:center;justify-content:center;"><span class="vrio-letter" style="color:var(--amber);font-family:'Playfair Display',serif;font-size:22px;font-weight:900;">I</span></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);"><strong style="font-size:14px;">Inimitable</strong><p style="font-size:13px;color:var(--muted);margin:4px 0 0;">Is it costly to imitate? (path dependency, causal ambiguity, social complexity)</p></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);font-size:13px;color:var(--muted);">Resource cannot be easily copied or substituted</div>
+        <div style="padding:14px 14px;font-size:13px;"><span class="outcome-chip chip-unused">Unused advantage</span></div>
+      </div>
+      <!-- O -->
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;">
+        <div style="background:#1a2e1a;padding:16px 10px;display:flex;align-items:center;justify-content:center;"><span class="vrio-letter" style="color:#8bc78a;font-family:'Playfair Display',serif;font-size:22px;font-weight:900;">O</span></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);"><strong style="font-size:14px;">Organised</strong><p style="font-size:13px;color:var(--muted);margin:4px 0 0;">Is the firm organised to capture the value? (structures, processes, incentives)</p></div>
+        <div style="padding:14px 14px;border-right:1px solid var(--light-rule);font-size:13px;color:var(--muted);">Firm has systems to exploit the resource's full potential</div>
+        <div style="padding:14px 14px;font-size:13px;"><span class="outcome-chip chip-sustained">Sustained advantage</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>RBV Implication</strong>
+      <p>The RBV suggests competitive advantage is found by looking <em>inward</em> as much as outward. A firm should identify its VRIO resources and build strategy around protecting and leveraging them.</p>
+    </div>
+  </div>
+
+  <!-- DYNAMIC CAPABILITIES -->
+  <div class="section" id="teece">
+    <h3>Teece's Dynamic Capabilities</h3>
+    <p>The RBV was critiqued for being static — it explains current advantage but not how firms <em>renew</em> advantage in rapidly changing environments. David Teece (1997, 2007) responded with the Dynamic Capabilities framework.</p>
+
+    <div class="callout">
+      <strong>Definition</strong>
+      <p>Dynamic capabilities are the firm's ability to integrate, build, and reconfigure internal and external competences to address rapidly changing environments. They operate <em>above</em> ordinary capabilities to enable the firm to change what it does and how it does it.</p>
+    </div>
+
+    <p>Teece identifies three clusters:</p>
+
+    <div class="dyn-caps">
+      <div class="dyn-cap-card">
+        <div class="dyn-cap-header cap-sensing">
+          <div class="dyn-cap-num">Cluster 01</div>
+          <h4>Sensing</h4>
+        </div>
+        <div class="dyn-cap-body">
+          Scanning, monitoring, and interpreting technological opportunities and competitive threats. Involves R&D, market research, and learning from customers and partners.
+        </div>
+      </div>
+      <div class="dyn-cap-card">
+        <div class="dyn-cap-header cap-seizing">
+          <div class="dyn-cap-num">Cluster 02</div>
+          <h4>Seizing</h4>
+        </div>
+        <div class="dyn-cap-body">
+          Mobilising resources to capture value from identified opportunities. Involves investment decisions, business model design, and commitment of capital and talent.
+        </div>
+      </div>
+      <div class="dyn-cap-card">
+        <div class="dyn-cap-header cap-transforming">
+          <div class="dyn-cap-num">Cluster 03</div>
+          <h4>Transforming</h4>
+        </div>
+        <div class="dyn-cap-body">
+          Ongoing renewal of assets, structures, and culture to remain aligned with a changing environment. Prevents rigidities from locking the firm into outmoded routines.
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>vs. RBV</h4>
+        <p>Dynamic capabilities are about <em>changing</em> the resource base, not just deploying existing resources. A firm with strong dynamic capabilities continuously renews its sources of advantage.</p>
+      </div>
+      <div class="concept-card">
+        <h4>Ordinary vs. Dynamic</h4>
+        <p>Ordinary capabilities allow the firm to do routine things well. Dynamic capabilities operate at a higher level — enabling the firm to adapt those routines as circumstances change.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONNECTING FRAMEWORKS -->
+  <div class="section" id="connect">
+    <h3>Connecting the Frameworks</h3>
+    <p>These frameworks are complementary, not competing. A robust environmental analysis uses all four in sequence:</p>
+
+    <div class="connect-banner">
+      <h3>The Integrated Analytical Sequence</h3>
+      <p>Each framework answers a different question. Together, they build a complete picture of the firm's strategic situation.</p>
+      <div class="connect-flow">
+        <div class="connect-flow-item">PESTLE<br><span style="font-size:10px;opacity:0.6;">Macro environment</span></div>
+        <div class="connect-flow-arrow">→</div>
+        <div class="connect-flow-item">Five Forces<br><span style="font-size:10px;opacity:0.6;">Industry structure</span></div>
+        <div class="connect-flow-arrow">→</div>
+        <div class="connect-flow-item">VRIO / RBV<br><span style="font-size:10px;opacity:0.6;">Internal resources</span></div>
+        <div class="connect-flow-arrow">→</div>
+        <div class="connect-flow-item">Dyn. Capabilities<br><span style="font-size:10px;opacity:0.6;">Renewal capacity</span></div>
+      </div>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <h4>Outside-In</h4>
+        <p>PESTLE and Porter's Five Forces look from the environment inward — identifying threats, opportunities, and structural attractiveness of industries.</p>
+      </div>
+      <div class="concept-card">
+        <h4>Inside-Out</h4>
+        <p>RBV and VRIO look from the firm outward — identifying which internal resources can be leveraged to create and sustain competitive advantage.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:16px;">Dynamic capabilities bridge the two: they explain how firms adapt their internal resources in response to external shifts detected through PESTLE and Five Forces analysis. A firm that can sense environmental change, seize the resulting opportunity, and transform its capabilities accordingly sustains advantage even as the competitive landscape evolves.</p>
+  </div>
+
+</main>
+
+<script>
+  // Highlight active nav link on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          link.style.borderLeftColor = '';
+        });
+        const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+        if (active) {
+          active.style.color = '#fff';
+          active.style.borderLeftColor = '#c0392b';
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
